@@ -132,6 +132,109 @@
       font-size: 12px !important;
       line-height: 1.8;
     }
+
+    .footer-box {
+      position: fixed;
+      bottom: 3vh;
+      /* 距离底部约3%视口高度 */
+      right: 3vw;
+      /* 距离右侧约3%视口宽度 */
+      width: 26vw;
+      /* 宽度占屏幕宽度约1/4 */
+      max-width: 420px;
+      /* 大屏不超过420px */
+      min-width: 300px;
+      /* 小屏不小于300px */
+      background: rgba(0, 0, 0, 0.55);
+      color: #f1f5f9;
+      font-size: clamp(0.8rem, 0.9vw, 1rem);
+      /* 自动根据屏幕缩放字体 */
+      line-height: 1.7;
+      padding: 1.2em 1.4em;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ===== 可展开的右下角信息框 ===== */
+    .info-popup {
+      position: fixed;
+      bottom: 2vh;
+      right: 2vw;
+
+      width: 420px;
+      max-width: 24vw;
+
+      /* 默认高度：足够显示 LOGO */
+      height: 80px;
+      /* ✔ 增加高度，让 logo 完整可见 */
+
+      background: rgba(0, 0, 0, 0.55);
+      color: #f1f5f9;
+      border-radius: 12px;
+      padding: 12px 16px;
+
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      overflow: hidden;
+      /* 文字区域默认隐藏 */
+      transition: height 0.5s ease;
+      z-index: 10;
+    }
+
+    /* ===== 鼠标 hover 展开 ===== */
+    .info-popup:hover {
+      height: 340px;
+      /* ✔ 展开后高度 */
+    }
+
+    /* ===== 文字内容（折叠时隐藏）===== */
+    .info-content {
+      opacity: 0;
+      max-height: 0;
+      /* ✔ 折叠时完全隐藏 */
+      overflow: hidden;
+      transition: all 0.5s ease;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* 展开后文字显示 */
+    .info-popup:hover .info-content {
+      opacity: 1;
+      max-height: 800px;
+      /* ✔ 足够大的值以展开文字 */
+    }
+
+    /* ===== logo 区域总是可见 ===== */
+    .info-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-top: 8px;
+      /* ✔ 不在折叠时被覆写 */
+    }
+
+    .info-logos img {
+      height: 42px;
+      /* ✔ 你可以调整大小 */
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .info-logos img:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    /* 强制右下角字体大小 */
+    .info-content,
+    .info-content p {
+      font-size: 12px !important;
+      line-height: 1.8;
+    }
   </style>
 </head>
 
@@ -172,23 +275,24 @@
     }, 5000);
   </script>
 
-  <!-- 右下角署名与介绍 -->
-  <div class="footer-box">
-    <p>
-      古树名木是森林生态系统中的珍贵瑰宝，是自然界与前人留下的重要遗产，真实记录并生动反映了社会发展和自然变迁的印迹。
-      它们不仅是宝贵的基因库和景观资源，也是重要的旅游资源与独特的生态文化载体，具有不可替代的多重价值。
-      <br /><br />
-      哈纳斯自然保护区古树名木资源调查项目由喀纳斯景区管理委员会委托，
-      浙江大学生命科学学院承担。通过全面掌握古树名木的数量、种类、分布及生长状况，
-      为科学编制保护规划、制定保护措施、健全法规政策提供可靠依据。
-    </p>
+  <div class="info-popup">
+    <div class="info-content">
+      <p>
+        古树名木是森林生态系统中的珍贵瑰宝，是自然界与前人留下的重要遗产，真实记录并生动反映了社会发展和自然变迁的印迹。
+        它们不仅是宝贵的基因库和景观资源，也是重要的旅游资源与独特的生态文化载体，具有不可替代的多重价值。
+        <br /><br />
+        哈纳斯自然保护区古树名木资源调查项目由喀纳斯景区管理委员会委托，
+        浙江大学生命科学学院承担。通过全面掌握古树名木的数量、种类、分布及生长状况，
+        为科学编制保护规划、制定保护措施、健全法规政策提供可靠依据。
+      </p>
+    </div>
 
-    <div class="footer-logos">
+    <div class="info-logos">
       <a href="https://www.kns.gov.cn/" target="_blank">
-        <img src="./images/kns_logo.png" alt="喀纳斯景区管理委员会">
+        <img src="./images/kns_logo.png" />
       </a>
       <a href="https://www.bio.zju.edu.cn/" target="_blank">
-        <img src="./images/zju_life_science.png" alt="浙江大学生命科学学院">
+        <img src="./images/zju_life_science.png" />
       </a>
     </div>
   </div>
