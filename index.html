@@ -235,10 +235,43 @@
       font-size: 12px !important;
       line-height: 1.8;
     }
+
+    /* 左上角 LOGO 样式 */
+    .top-logos {
+      position: fixed;
+      top: 2vh;
+      /* 距离顶部 */
+      left: 2vw;
+      /* 距离左边 */
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      /* 两个 logo 之间的间距 */
+      z-index: 20;
+      /* 确保覆盖在背景图上 */
+    }
+
+    /* 让两个 logo 始终保持相同大小 */
+    .top-logos img {
+      height: 160px;
+      /* 你可按需调大调小，比如 40px / 60px */
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      /* 可选：让 logo 更清晰 */
+      transition: transform 0.25s ease;
+    }
+
   </style>
 </head>
 
 <body>
+  <!-- 左上角 LOGO 区域 -->
+  <div class="top-logos">
+    <img src="./images/kanas_logo.png" alt="喀纳斯景区管理委员会">
+    <img src="./images/zju_logo.png" alt="浙江大学">
+  </div>
+
+
   <div class="bg-slideshow" id="bg"></div>
   <div class="overlay"></div>
 
